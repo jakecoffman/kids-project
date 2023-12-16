@@ -1,0 +1,54 @@
+<html>
+<style>
+body {
+    background-color: #808080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 100px;
+    font-family: sans-serif;
+}
+</style>
+<body>
+<h1 id="message"></h1>
+<script>
+    let running = true;
+
+    const body = document.body;
+    body.onclick = () => {
+        running = !running;
+    }
+
+    const message = document.getElementById("message");
+    const possibleMessages = [
+        "Yes",
+        "No",
+        "Moo",
+        "Moo too",
+    ]
+
+    setInterval(() => {
+        if (!running) {
+            return;
+        }
+        changeColor();
+        changeMessage();
+    }, 100)
+
+    function changeColor() {
+        const randomNumber = Math.random()*16777215;
+        const floored = Math.floor(randomNumber);
+        const randomColor = floored.toString(16);
+
+        document.body.style.backgroundColor = "#" + randomColor;
+    }
+
+    function changeMessage() {
+        const randomNumber = Math.random()*possibleMessages.length;
+        const floored = Math.floor(randomNumber);
+        message.innerHTML = possibleMessages[floored];
+    }
+</script>
+</body>
+</html>
